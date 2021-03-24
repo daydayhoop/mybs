@@ -19,7 +19,7 @@ app.get('/getData', async (req, res) => {
         },
 
     });
-
+//模块
 
     const response2 = await fetch(encodeURI(`http://api.heclouds.com/devices/${device_id}/datastreams/湿度`), {
 
