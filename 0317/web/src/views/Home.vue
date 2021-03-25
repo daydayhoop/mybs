@@ -37,10 +37,10 @@
 	<van-button @click="ok" type="danger">设置阈值</van-button>
 
 
-
   </div>
 </template>
 <style>
+
     .mydiv {
         display:flex;
         justify-content:center;
@@ -49,9 +49,8 @@
 <script>
 export default {
   data() {
-
       return {
-		value:0,
+		value:400, //默认阈值为400
       oneData: { temperature: 0, humidity: 0, mq2: 0, pir: "" },
     };
 
@@ -59,12 +58,13 @@ export default {
 
   methods: {
 	  ok(){
-
+       //通过get指令将阈值传递给nodejs 并将返回的信息在控制台打印
 		  this.axios.get("http://localhost:3000/cmd/"+this.value).then((res) => {
 		    
 		    console.info(res.data);
 		  });
 	  },
+      //通过get指令给nodejs传递参数控制亮暗 并将返回的信息在控制台打印
     close() {
       this.axios.get("http://localhost:3000/cmd/close").then((res) => {
         
@@ -78,6 +78,7 @@ export default {
       });
     },
   },
+    //定时刷新获取onenet信息
   mounted() {
     setInterval(() => {
       this.axios.get("http://localhost:3000/getData").then((res) => {

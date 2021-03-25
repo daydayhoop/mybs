@@ -27,8 +27,8 @@ void niceCallback() {
   float h = dht.readHumidity();
   float t = dht.readTemperature();
   mq2Value = analogRead(mq2Pin);
-
   pirVlue = digitalRead(pirPin); //等于1则为有人
+  //获取传感器数据
   const int capacity = JSON_OBJECT_SIZE(5);
   StaticJsonDocument<capacity> doc;//声明一个JsonDocument对象
   doc["temperature"] = t; //温度
